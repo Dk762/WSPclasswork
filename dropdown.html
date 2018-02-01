@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Dropdown
+        </title>
+        <style>
+            body{background-color: rgb(249, 252, 251);
+                margin: 0;
+            }
+            h1{
+                text-align: center;
+                color:black;
+            }
+            .navbtn{
+                background-color:gray;
+                color: black;
+                padding: 0;
+                font-size: 12px;
+                border: none;
+                cursor: pointer;
+            }
+            ul{
+                list-style-type: none;
+                margin: 0; 
+                padding: 0;
+                overflow: hidden;
+                background-color: gray;
+            }
+            li{
+                float: left;
+            }
+            li a:hover, .navlist:hover .navbtn {
+                background-color: rgb(37, 11, 85); 
+                color: white;
+            }
+            .navlist-content{
+                display: none;
+                position: absolute;
+                background-color:black;
+                min-width: 160px;
+                box-shadow: 0ch;
+                z-index: 1;
+            }
+            li.navlist{
+                display: inline-block;
+            }
+            .navlist-content a{
+                color:white;
+                padding: 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+            .navlist-content a:hover {
+                background-color: rgb(218, 88, 13);
+                color: black;
+            }
+            .navlist:hover .navlist-content {
+                display: block;
+            }
+            li a, .navbtn {
+                display: inline-block;
+                color: black;
+                text-align: left;
+                padding: 16px;
+                text-decoration: none;
+                font-size:15px
+            }
+        </style>
+    </head>
+
+    <body>
+        <ul>
+            <li class="navlist">
+                <a href="" class="navbtn">Football</a>
+                <div class="navlist-content">
+                    <a href="">News</a>
+                    <a href="">blog</a>
+                    <a href="">transfer</a>
+                </div>
+            </li>
+            <li class="navlist">
+                <a href="" class="navbtn">international</a>
+                <div class="navlist-content">
+                    <a href="">world cup</a>
+                    <a href="">cofedration cup</a>
+                    <a href="">euro cup</a>
+                    <a href="">Copa America</a>
+                </div>
+            </li>
+            <li class="navlist">
+                <a href="" class="navbtn">barclays premier league</a>
+                <div class="navlist-content">
+                    <a href="">schedual</a>
+                    <a href="">standing</a>
+                    <a href="">stats</a>
+                    <a href="">Teams</a>
+                </div>
+            </li>
+            <li class="navlist">
+                <a href="" class="navbtn">Laliga BBVA</a>
+                <div class="navlist-content">
+                    <a href="">schedual</a>
+                    <a href="">standing</a>
+                    <a href="">stats</a>
+                    <a href="">teams</a>
+                </div>
+            </li>
+        </ul>
+        <h1>Dropdown Menu using Html and CSS</h1>
+    </body>
+</html>
