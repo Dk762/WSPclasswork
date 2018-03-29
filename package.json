@@ -1,5 +1,5 @@
 {
-  "name": "what",
+  "name": "whatmeme",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -8,8 +8,7 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "server": "nodemon server server/index.js"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -24,21 +23,20 @@
     "@angular/router": "^5.2.0",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.1",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
-    "@angular/cli": "~1.7.2",
+    "@angular/cli": "~1.7.3",
     "@angular/compiler-cli": "^5.2.0",
     "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
+    "@types/jquery": "^3.3.1",
     "@types/node": "~6.0.60",
-    "@types/jquery": "^3.3.0",
-    "nodemon": "^1.15.1",
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -47,6 +45,7 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "nodemon": "^1.17.2",
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
