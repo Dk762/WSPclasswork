@@ -4,9 +4,9 @@
       <div class="card" >
           <div class="card-header">My Quotes</div>
           <ul class="list-group list-group-flush">
-          <li>"Great minds think alike, but ...",</li>
-          <li>"Axis of Evil",</li>
-          <li>"There are two extremes"</li>
+          <li*ngFor="let quote of Model.MyQuotes" class="list-group-item" (click)="submitQuote($event, quote)">
+             {{quote}}"
+           </li>
           </ul>
         </div>
   </div>
@@ -30,9 +30,10 @@
       <div class="card" >
           <div class="card-header">Other Players</div>
           <ul class="list-group list-group-flush">
-              <li>Dk</li>
-              <li>Leonal</li>
-              <li>KP</li>
+              <li *ngFor="let player of Model.Players" class="list-group-item">
+                    <img style="height: 16px; width: 16px" class="rounded">
+                    {{player.Name}}
+              </li>
           </ul>
       </div>
   </div>
