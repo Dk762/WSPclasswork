@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Game } from '../models/game'
+import { Game, User, Quote } from '../models/game'
 
 @Component({
   selector: 'app-game',
@@ -8,10 +8,24 @@ import { Game } from '../models/game'
 })
 export class GameComponent implements OnInit {
   Model = new Game();
+  Me = new User();
 
-  constructor() { }
+  constructor() { 
+    this.Me.Name = "Dhaval patel"
+  }
 
   ngOnInit() {
   }
+  submitQuote(e: MouseEvent, text: string){
+    e.preventDefault();
 
-}
+    if(this.MyPlayedQuote()) return;
+    this.Model.PlayedQuotes.push({Text: text, PlayerName: this.Me.Name, Chosen: false });
+    this.Model.MyQuotes.splice( this.Model.MyQuotes.indexOf(text), 1 );
+  }
+
+  MyPlayedQuote(): Quote | null {
+    return this.Model.PlayedQuotes.find( x => x.PlayerName == this.Me.Name );
+  }
+
+  }
