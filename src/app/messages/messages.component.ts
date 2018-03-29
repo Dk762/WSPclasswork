@@ -6,12 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-
-  Messages:string[];
+  Messages: string[];
 
   constructor() {
     this.Messages = ['You can now choose your own pictures.'];
-  }
+   }
 
   ngOnInit() {
   }
