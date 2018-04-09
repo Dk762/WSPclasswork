@@ -4,6 +4,6 @@
 .my-quotes .enabled {
     cursor: pointer;
 }
-.my-quotes .enabled:hover{
+.my-quotes .enabled:hover {
     background-color: #DDEEFF;
 }
