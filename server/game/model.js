@@ -1,5 +1,6 @@
-const Quotesstack = [
+var axios = require("axios");
 
+const QuotesStack = [
     "Wisdom is the reward you get for a lifetime of listening when you'd have preferred to talk. -Doug Larson",
     "If you make listening and observation your occupation, you will gain much more than you can by talk. -Robert Baden-Powell",
     "One of the most sincere forms of respect is actually listening to what another has to say. -Bryant H. McGill",
@@ -103,23 +104,32 @@ const Quotesstack = [
 
 ];
 var iCurrentQuote = 0;
-const PicturesStack = [
 
-
+var PicturesStack = [
+    "https://media3.s-nbcnews.com/j/newscms/2018_14/2387596/180404-oklahoma-city-capitol-teacher-protest-ew-323p_93b119734c532d143960db8f96475eaf.focal-1000x500.jpg",
+    "https://media1.s-nbcnews.com/j/newscms/2018_14/2387601/180404-oklahoma-city-capitol-teacher-protest-ew-322p_f37368c21208ba28395347307828b056.fit-560w.jpg"
 ];
+
+axios.get('https://api.imgflip.com/get_memes')
+        .then( response => PicturesStack = response.data.data.memes )
+
 var iCurrentPicture = 0;
-/*
-class Game {
-    Players = [];
-    DealerId = '';
 
-    PlayedQuotes = []
-    Picture = '';
+function Game() {
+    this.Players = [];
+    this.DealerId = null;
+
+    this.PlayedQuotes = []
+    this.Picture = null;
     
-    GetQuotes = () => QuotesStack.slice(iCurrentQuote, iCurrentQuote += 7);
+    this.GetQuotes = () => QuotesStack.slice(iCurrentQuote, iCurrentQuote += 7);
+    this.FlipPicture = () => this.Picture = PicturesStack[iCurrentPicture = (iCurrentPicture+1) % PicturesStack.length ];
+    this.SubmitQuote = (text, PlayedId) => this.PlayedQuotes.push({ Text: text, PlayerId: playerId });
+    this.ChooseQuote = text => {
+        this.PlayedQuotes.find(x=> x.Text == text).Chosen = true;
+        this.DealerId = this.Players[this.DealerId = (this.DealerId + 1) % this.Players.length] 
 }
-*/
 
-var GetQuotes = () => QuotesStack.slice(iCurrentQuote, iCurrentQuote += 7)
+}
 
-module.exports.GetQuotes = GetQuotes;
+module.exports = Game;
