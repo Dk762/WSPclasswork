@@ -9,8 +9,14 @@ const game = require('./game/controller');
 
 // respond with "hello world" when a GET request is made to the homepage
 app
-    .use('/simple' ,simple).listen(port)
+    .use('/', (req, res, next) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "*");
+        next();
+    })
+    .use('/simple', simple)
     .use('/game', game)
     .listen(port);
-console.log("running on http://" +servername + ":" + port)
+    
+console.log("running on http://" + servername + ":" + port)
   
