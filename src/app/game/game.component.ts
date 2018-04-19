@@ -10,12 +10,10 @@ import { Game, User, Quote } from '../models/game';
 export class GameComponent implements OnInit {
 
     Model = new Game();
-    Me = new User();
+    Me: User;
     private _api = "http://localhost:8080/game";
 
   constructor(private http: Http) {
-    this.Me.Name = "DK"
-    http.get(this._api + "/quotes", { params : { PlayerId: this.Me.Name } }).subscribe(data=> this.Me.MyQuotes = data.json())
     setInterval(()=> this.refresh(), 1000)
   }
 
@@ -45,6 +43,10 @@ export class GameComponent implements OnInit {
             this.Me.MyQuotes.splice( this.Me.MyQuotes.indexOf(text), 1 );
          }
       });    
+  }
+  login(name: string){
+      this.http.get(this._api + "/quotes", { params : { playerId: name } })
+      .subscribe(data=> this.Me = {Name:name, MyQuotes: data.json() } )
   }
 
   MyPlayedQuote = () => this.Model.PlayedQuotes.find( x => x.PlayerId == this.Me.Name );
