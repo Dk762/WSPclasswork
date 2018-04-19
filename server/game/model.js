@@ -122,7 +122,14 @@ function Game() {
     this.PlayedQuotes = []
     this.Picture = null;
     
-    this.GetQuotes = () => QuotesStack.slice(iCurrentQuote, iCurrentQuote += 7);
+    this.GetQuotes = (PlayerId) => {
+        if(this.Players.some(X=> x.PlayedId == playerId)){
+
+        }else{
+            this.Players.push({ PlayerId: playerId, Name: playerId });
+            return QuotesStack.slice(iCurrentQuote, iCurrentQuote += 7);
+        }
+    }
     this.FlipPicture = () => this.Picture = PicturesStack[iCurrentPicture = (iCurrentPicture+1) % PicturesStack.length ];
     this.SubmitQuote = (text, PlayedId) => this.PlayedQuotes.push({ Text: text, PlayerId: playerId });
     this.ChooseQuote = text => {

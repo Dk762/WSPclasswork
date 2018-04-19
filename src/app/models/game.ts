@@ -1,17 +1,11 @@
 export class Game {
     
-    Players: User[] = [
-        { Name: 'DK', MyQuotes: [] },
-        { Name: 'KP', MyQuotes: [] },
-        { Name: 'VK', MyQuotes: [] },        
-    ];
-    Dealer: string = "DK";
+    Players: User[];
+    DealerId: string;
     Picture: {
         url: string
     };
-    PlayedQuotes: Quote[] = [
-        { Text: "That's fake news", PlayerName: 'KP', Chosen: false }
-    ];
+    PlayedQuotes: Quote[];
 }
 
 export class User {
@@ -21,6 +15,6 @@ export class User {
 
 export class Quote {
     Text: string;
-    PlayerName: string;
+    PlayerId: string;
     Chosen: boolean = false;
 }
