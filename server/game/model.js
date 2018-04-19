@@ -117,25 +117,30 @@ var iCurrentPicture = 0;
 
 function Game() {
     this.Players = [];
-    this.DealerId = null;
+    this.DealerId = 0;
 
     this.PlayedQuotes = []
     this.Picture = null;
     
     this.GetQuotes = (playerId) => {
-        if(this.Players.some(x=> x.PlayerId == playerId)){
-
+        let playerDealer = this.DealerId;
+        if(this.Players.some(x => x.Name === playerId)){
+            playerDealer = this.Players.find(x => x.Name === playerId).playerDealer;
         }else{
-            this.Players.push({ PlayerId: playerId, Name: playerId });
+            playerDealer = (this.DealerId + 1) % this.Players.length;
+            this.Players.push({ PlayerId: playerDealer, Name: playerId});
         }
-            return QuotesStack.slice(iCurrentQuote, iCurrentQuote += 7);
+        return JSON.stringify({Quotes: QuotesStack.slice(iCurrentQuote, iCurrentQuote += 7), DealerId: playerDealer });
             
     }
     this.FlipPicture = () => this.Picture = PicturesStack[iCurrentPicture = (iCurrentPicture+1) % PicturesStack.length ];
-    this.SubmitQuote = (text, playerId) => this.PlayedQuotes.push({ Text: text, PlayerId: playerId });
+    this.SubmitQuote = (text, playerId) => {
+        this.PlayedQuotes.push({ Text: text, PlayerId: playerId });
+        this.DealerId = (this.DealerId + 1) % this.Players.length;
+    };    
     this.ChooseQuote = text => {
         this.PlayedQuotes.find(x=> x.Text == text).Chosen = true;
-        this.DealerId = this.Players[this.DealerId = (this.DealerId + 1) % this.Players.length] 
+        this.DealerId = (this.DealerId + 1) % this.Players.length; 
 }
 
 }

@@ -33,6 +33,8 @@ export class GameComponent implements OnInit {
 
   
   submitQuote(e: MouseEvent, text: string){
+    console.log(this.Me.DealerId, this.Model.DealerId);
+    if(this.IAmTheDealer()) {
     e.preventDefault();
 
     if(this.MyPlayedQuote()) return;
@@ -44,13 +46,17 @@ export class GameComponent implements OnInit {
          }
       });    
   }
+}
   login(name: string){
       this.http.get(this._api + "/quotes", { params : { playerId: name } })
-      .subscribe(data=> this.Me = {Name:name, MyQuotes: data.json() } )
+      .subscribe(data => {
+        console.log(data.json());
+        this.Me = { Name: name, MyQuotes: data.json().Quotes, DealerId: data.json().DealerId };
+      });
   }
 
   MyPlayedQuote = () => this.Model.PlayedQuotes.find( x => x.PlayerId == this.Me.Name );
   ChosenQuote = () => this.Model.PlayedQuotes.find( x => x.Chosen );
   IsEveryoneDone = () => this.Model.PlayedQuotes.length == this.Model.Players.length - 1;
-  IAmTheDealer = () => this.Me.Name == this.Model.DealerId;
+  IAmTheDealer = () => this.Me.DealerId == this.Model.DealerId;
 }
