@@ -22,8 +22,7 @@ export class GameComponent implements OnInit {
   }
 
   refresh(){
-    this.http.get(this._api + "/state")
-      .subscribe(data=> this.Model = data.json())
+    this.http.get(this._api + "/state").subscribe(data=> this.Model = data.json())
   }
 
   flipPicture(e: MouseEvent){
@@ -33,30 +32,26 @@ export class GameComponent implements OnInit {
 
   
   submitQuote(e: MouseEvent, text: string){
-    console.log(this.Me.DealerId, this.Model.DealerId);
-    if(this.IAmTheDealer()) {
     e.preventDefault();
 
-    if(this.MyPlayedQuote()) return;
+    if(this.MyPlayedQuote() || this.IAmTheDealer()) return;
 
     this.http.post(this._api + "/quotes", { Text: text, PlayerId: this.Me.Name })
       .subscribe(data=> {
          if(data.json().success){
             this.Me.MyQuotes.splice( this.Me.MyQuotes.indexOf(text), 1 );
          }
+       }, err=> {
+         console.log(err); 
       });    
   }
-}
   login(name: string){
       this.http.get(this._api + "/quotes", { params : { playerId: name } })
-      .subscribe(data => {
-        console.log(data.json());
-        this.Me = { Name: name, MyQuotes: data.json().Quotes, DealerId: data.json().DealerId };
-      });
+      .subscribe(data=> this.Me = {Name:name, MyQuotes: data.json() } )
   }
 
   MyPlayedQuote = () => this.Model.PlayedQuotes.find( x => x.PlayerId == this.Me.Name );
   ChosenQuote = () => this.Model.PlayedQuotes.find( x => x.Chosen );
   IsEveryoneDone = () => this.Model.PlayedQuotes.length == this.Model.Players.length - 1;
-  IAmTheDealer = () => this.Me.DealerId == this.Model.DealerId;
+  IAmTheDealer = () => this.Me.Name == this.Model.DealerId;
 }
