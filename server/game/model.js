@@ -123,6 +123,9 @@ function Game() {
     this.Picture = null;
     
     this.GetQuotes = (playerId) => {
+        if(!this.DealerId){
+            this.DealerId = playerId;
+        }
         if(this.Players.some(x=> x.PlayerId == playerId)){
         }else{
             this.Players.push({ PlayerId: playerId, Name: playerId });
