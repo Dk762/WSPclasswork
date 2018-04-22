@@ -21,3 +21,11 @@ module.exports = app
             res.status(403).send({ success: false, message: error.message });
         }
     })
+    .post('/quote/choose', (req,res) => {
+        if(req.body.PlayerId != game.DealerId){
+            res.status(403).send({ success: false,message: "only dealer can choose a quote" });
+        }else{
+            game.chooseQuote(req.body.Text);
+            res.send( { success: true} );
+        }
+    })
