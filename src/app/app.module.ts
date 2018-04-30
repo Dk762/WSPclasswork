@@ -9,6 +9,8 @@ import { GameComponent } from './game/game.component';
 import { HomeComponent } from './home/home.component';
 import { MessagesComponent } from './messages/messages.component';
 import { NavComponent } from './nav/nav.component';
+import { MessagesService } from './services/messages.service';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { NavComponent } from './nav/nav.component';
     GameComponent,
     HomeComponent,
     MessagesComponent,
-    NavComponent
+    NavComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,7 @@ import { NavComponent } from './nav/nav.component';
         { path: '', redirectTo: '/home', pathMatch: 'full'}
     ])
   ],
-  providers: [],
+  providers: [MessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
